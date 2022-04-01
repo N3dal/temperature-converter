@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-# -----------------------------------------------------------------
-#
+# ------------------------------------------------------------------
+# simple program for convert Temperature from C to K and vice-versa.
 #
 #
 #
@@ -10,7 +10,7 @@
 # ///
 # ///
 # ///
-# -----------------------------------------------------------------
+# ------------------------------------------------------------------
 
 import tkinter
 from os import system
@@ -21,7 +21,7 @@ from os import name as OS_NAME
 WIN_WIDTH = 500
 WIN_HEIGHT = 350
 WIN_BACKGROUND = "gray35"
-WIN_TITLE = "N3dal"
+WIN_TITLE = "Temperature Converter"
 WIN_FONT = "Ubuntu"
 
 
