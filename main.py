@@ -137,7 +137,7 @@ def convert_temperature(text: str):
     if text.count('-') > 1:
         return "There more than one negative sign."
 
-    if text.find('-') != 0:
+    if text.find('-') not in (-1, 0):
         return "wrong negative sign."
 
     if not all(char.isdecimal() or char in ('c', 'k', '-') for char in text):
