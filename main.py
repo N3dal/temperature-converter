@@ -65,22 +65,27 @@ def main_window():
 
     # create widgets.
 
-    temperature_text = tkinter.Entry(
+    temperature_entry = tkinter.Entry(
         root, bd=0, highlightbackground="black", highlightthickness=1, font=(WIN_FONT, 15))
-    temperature_text.place(x=100, y=40)
+    temperature_entry.place(x=100, y=40)
 
     convert_btn = tkinter.Button(
         root, text="Convert", bd=0, highlightbackground="black", bg="gray80",  highlightthickness=0,
-        activebackground="royalblue", activeforeground="gray90", font=(WIN_FONT, 12), command=None)
+        activebackground="royalblue", activeforeground="gray90", font=(WIN_FONT, 12), command=lambda: convert_btn_event(temperature_entry, result_var))
     convert_btn.place(x=324, y=39)
 
-    result_label = tkinter.Label(root, textvariable=None, font=(
+    result_label = tkinter.Label(root, textvariable=result_var, font=(
         WIN_FONT, 30, "bold"), bg=WIN_BACKGROUND)
     result_label.place(x=210, y=111)
 
     start_app(root)
 
-# def convert_btn
+
+def convert_btn_event(temperature_entry: tkinter.Entry, result_var: tkinter.StringVar):
+    """btn event/callback when we click on the convert btn."""
+
+    result_var.set(temperature_entry.get())
+
 
 def main():
     main_window()
