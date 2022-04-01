@@ -73,7 +73,9 @@ def main_window():
 
     temperature_text.place(x=100, y=40)
 
-    # result_
+    result_label = tkinter.Label(root, textvariable=None, font=(
+        WIN_FONT, 30, "bold"), bg=WIN_BACKGROUND)
+    result_label.place(x=210, y=111)
 
     start_app(root)
 
