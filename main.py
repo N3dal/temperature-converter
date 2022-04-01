@@ -19,7 +19,7 @@ from os import name as OS_NAME
 
 # set the defaults.
 WIN_WIDTH = 500
-WIN_HEIGHT = 350
+WIN_HEIGHT = 200
 WIN_BACKGROUND = "gray55"
 WIN_TITLE = "Temperature Converter"
 WIN_FONT = "Ubuntu"
@@ -64,11 +64,16 @@ def main_window():
 
     convert_btn = tkinter.Button(
         root, text="Convert", bd=0, highlightbackground="black", bg="gray80",  highlightthickness=0,
-        activebackground="royalblue", activeforeground="gray90", command=None)
+        activebackground="royalblue", activeforeground="gray90", font=(WIN_FONT, 12), command=None)
 
-    convert_btn.place(x=120, y=30)
+    convert_btn.place(x=324, y=39)
 
-    # temperature_text = tkin
+    temperature_text = tkinter.Entry(
+        root, bd=0, highlightbackground="black", highlightthickness=1, font=(WIN_FONT, 15))
+
+    temperature_text.place(x=100, y=40)
+
+    # result_
 
     start_app(root)
 
