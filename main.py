@@ -71,19 +71,19 @@ def main_window():
         root, bd=0, highlightbackground="black", highlightthickness=1, font=(WIN_FONT, 15))
     temperature_entry.place(x=100, y=40)
 
+    result_label = tkinter.Label(root, textvariable=result_var, font=(
+        WIN_FONT, 16, "bold"), bg=WIN_BACKGROUND, fg="gold")
+    result_label.place(x=210, y=111)
+
     convert_btn = tkinter.Button(
         root, text="Convert", bd=0, highlightbackground="black", bg="gray80",  highlightthickness=0,
-        activebackground="royalblue", activeforeground="gray90", font=(WIN_FONT, 12), command=lambda: convert_btn_event(temperature_entry, result_var))
+        activebackground="royalblue", activeforeground="gray90", font=(WIN_FONT, 12), command=lambda: convert_btn_event(temperature_entry, result_var, result_label))
     convert_btn.place(x=324, y=39)
-
-    result_label = tkinter.Label(root, textvariable=result_var, font=(
-        WIN_FONT, 16, "bold"), bg=WIN_BACKGROUND)
-    result_label.place(x=210, y=111)
 
     start_app(root)
 
 
-def convert_btn_event(temperature_entry: tkinter.Entry, result_var: tkinter.StringVar):
+def convert_btn_event(temperature_entry: tkinter.Entry, result_var: tkinter.StringVar, result_label: tkinter.Label):
     """btn event/callback when we click on the convert btn."""
 
     # first we have to get the text from entry.
@@ -91,7 +91,23 @@ def convert_btn_event(temperature_entry: tkinter.Entry, result_var: tkinter.Stri
 
     result = convert_temperature(text_from_entry)
 
+    center_result_label(result_label, result)
+
     result_var.set(result)
+
+
+def center_result_label(result_label: tkinter.Label, text: str):
+    """make sure to center the result label, in the center,
+    horizontal-center of the window.
+    depending on the text len."""
+
+    # make sure to multiply the len by 11 or any int you find good.
+
+    text_len = len(text) * 11
+
+    x_coord = (WIN_WIDTH - text_len) // 2
+
+    result_label.place(x=x_coord, y=111)
 
 
 def convert_temperature(text: str):
@@ -103,9 +119,7 @@ def convert_temperature(text: str):
     '190k' or '120K' that will convert them to Celsius."""
 
     # first make text lower-case.
-    # and make sure to replace all dashs.
-    # ex: '320-k' => '320k'.
-    text = text.lower().strip().replace('-', '')
+    text = text.lower().strip()
 
     # guard conditions.
 
@@ -120,7 +134,13 @@ def convert_temperature(text: str):
     if text.count('k') > 1 or text.count('c') > 1:
         return "There more than one unit."
 
-    if not all(char.isdecimal() or char in ('c', 'k') for char in text):
+    if text.count('-') > 1:
+        return "There more than one negative sign."
+
+    if text.find('-') != 0:
+        return "wrong negative sign."
+
+    if not all(char.isdecimal() or char in ('c', 'k', '-') for char in text):
         return "non-valid syntax."
 
     # now convert the temperature.
