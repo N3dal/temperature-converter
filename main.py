@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # ------------------------------------------------------------------
-# simple program for convert Temperature from C to K and vice-versa.
+# simple program for convert Temperature from Celsius to Kelvin and vice-versa.
 #
 #
 #
@@ -15,6 +15,8 @@
 import tkinter
 from os import system
 from os import name as OS_NAME
+
+# TODO: add help pop-up window that explain how to use the program.
 
 
 # set the defaults.
@@ -88,6 +90,48 @@ def convert_btn_event(temperature_entry: tkinter.Entry, result_var: tkinter.Stri
     text_from_entry = temperature_entry.get()
 
     result_var.set(text_from_entry)
+
+
+def convert_temperature(text: str):
+    """convert from Celsius to Kelvin and vice-versa.
+    this will convert to Celsius if the text contain a 'k',
+    on that text, and it will convert to Kelvin if text contain,
+    a 'C' on that text, ex:
+    '230c' or '320C' that will convert them to Kelvin.
+    '190k' or '120K' that will convert them to Celsius."""
+
+    # first make text lower-case.
+    # and make sure to replace all dashs.
+    # ex: '320-k' => '320k'.
+    text = text.lower().strip().replace('-', '')
+
+    # guard conditions.
+
+    if text.isdecimal():
+        # if the user don't give us a unit.
+        return "Please give a Unit 'C' or 'K'."
+
+    if text.count('k') > 1 or text.count('c') > 1:
+        return "There more than one unit."
+
+    if not all(char.isdecimal() or char in ('c', 'k') for char in text):
+        return "non-valid syntax."
+
+    # now convert the temperature.
+
+    if 'c' in text:
+        "convert from Celsius to Kelvin"
+        # + 273.15.
+
+        temperature_in_kelvin = int(text.strip('c')) + 273.15
+        return f"{temperature_in_kelvin}K"
+
+    else:
+        "convert from Kelvin to Celsius"
+        # - 273.15.
+
+        temperature_in_celsius = int(text.strip('k')) - 273.15
+        return f"{temperature_in_celsius}C"
 
 
 def main():
