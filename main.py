@@ -60,18 +60,19 @@ def main_window():
     # change the window background=>bg.
     root.configure(bg=WIN_BACKGROUND)
 
+    # create special var.
+    result_var = tkinter.StringVar()
+
     # create widgets.
+
+    temperature_text = tkinter.Entry(
+        root, bd=0, highlightbackground="black", highlightthickness=1, font=(WIN_FONT, 15))
+    temperature_text.place(x=100, y=40)
 
     convert_btn = tkinter.Button(
         root, text="Convert", bd=0, highlightbackground="black", bg="gray80",  highlightthickness=0,
         activebackground="royalblue", activeforeground="gray90", font=(WIN_FONT, 12), command=None)
-
     convert_btn.place(x=324, y=39)
-
-    temperature_text = tkinter.Entry(
-        root, bd=0, highlightbackground="black", highlightthickness=1, font=(WIN_FONT, 15))
-
-    temperature_text.place(x=100, y=40)
 
     result_label = tkinter.Label(root, textvariable=None, font=(
         WIN_FONT, 30, "bold"), bg=WIN_BACKGROUND)
@@ -79,6 +80,7 @@ def main_window():
 
     start_app(root)
 
+# def convert_btn
 
 def main():
     main_window()
