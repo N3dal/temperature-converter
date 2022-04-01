@@ -77,7 +77,7 @@ def main_window():
     convert_btn.place(x=324, y=39)
 
     result_label = tkinter.Label(root, textvariable=result_var, font=(
-        WIN_FONT, 30, "bold"), bg=WIN_BACKGROUND)
+        WIN_FONT, 16, "bold"), bg=WIN_BACKGROUND)
     result_label.place(x=210, y=111)
 
     start_app(root)
@@ -89,7 +89,9 @@ def convert_btn_event(temperature_entry: tkinter.Entry, result_var: tkinter.Stri
     # first we have to get the text from entry.
     text_from_entry = temperature_entry.get()
 
-    result_var.set(text_from_entry)
+    result = convert_temperature(text_from_entry)
+
+    result_var.set(result)
 
 
 def convert_temperature(text: str):
@@ -107,6 +109,10 @@ def convert_temperature(text: str):
 
     # guard conditions.
 
+    if not text:
+        # if we given an empty string.
+        return "Enter something Please."
+
     if text.isdecimal():
         # if the user don't give us a unit.
         return "Please give a Unit 'C' or 'K'."
@@ -123,14 +129,14 @@ def convert_temperature(text: str):
         "convert from Celsius to Kelvin"
         # + 273.15.
 
-        temperature_in_kelvin = int(text.strip('c')) + 273.15
+        temperature_in_kelvin = round(int(text.strip('c')) + 273.15, 4)
         return f"{temperature_in_kelvin}K"
 
     else:
         "convert from Kelvin to Celsius"
         # - 273.15.
 
-        temperature_in_celsius = int(text.strip('k')) - 273.15
+        temperature_in_celsius = round(int(text.strip('k')) - 273.15, 4)
         return f"{temperature_in_celsius}C"
 
 
