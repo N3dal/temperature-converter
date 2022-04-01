@@ -84,7 +84,10 @@ def main_window():
 def convert_btn_event(temperature_entry: tkinter.Entry, result_var: tkinter.StringVar):
     """btn event/callback when we click on the convert btn."""
 
-    result_var.set(temperature_entry.get())
+    # first we have to get the text from entry.
+    text_from_entry = temperature_entry.get()
+
+    result_var.set(text_from_entry)
 
 
 def main():
