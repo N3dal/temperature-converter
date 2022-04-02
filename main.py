@@ -78,7 +78,7 @@ def main_window():
 
     convert_btn = tkinter.Button(
         root, text="Convert", bd=0, highlightbackground="black", bg="gray80",  highlightthickness=0,
-        activebackground="royalblue", activeforeground="gray90", font=(WIN_FONT, 12),
+        activebackground="royalblue", activeforeground="gray90", font=(WIN_FONT, 12, "bold"),
         command=lambda: convert_btn_event(temperature_entry, result_var, result_label), cursor="hand1", name="convert_btn")
     convert_btn.place(x=324, y=39)
     # adding enter and leave event to convert button.
@@ -95,7 +95,7 @@ def change_active_color(button: tkinter.Button):
     COLORS = ("royalblue",
               "indianred",
               "maroon",
-              "gold",
+              "cyan",
               "darkorange",
               "black")
 
