@@ -68,17 +68,17 @@ def main_window():
     # create widgets.
 
     temperature_entry = tkinter.Entry(
-        root, bd=0, highlightbackground="black", highlightthickness=1, font=(WIN_FONT, 15))
+        root, bd=0, highlightbackground="black", highlightthickness=1, font=(WIN_FONT, 15), name="temperature_entry")
     temperature_entry.place(x=100, y=40)
 
     result_label = tkinter.Label(root, textvariable=result_var, font=(
-        WIN_FONT, 16, "bold"), bg=WIN_BACKGROUND, fg="gold")
+        WIN_FONT, 16, "bold"), bg=WIN_BACKGROUND, fg="gold", name="result_label")
     result_label.place(x=210, y=111)
 
     convert_btn = tkinter.Button(
         root, text="Convert", bd=0, highlightbackground="black", bg="gray80",  highlightthickness=0,
         activebackground="royalblue", activeforeground="gray90", font=(WIN_FONT, 12),
-        command=lambda: convert_btn_event(temperature_entry, result_var, result_label), cursor="hand1")
+        command=lambda: convert_btn_event(temperature_entry, result_var, result_label), cursor="hand1", name="convert_btn")
     convert_btn.place(x=324, y=39)
 
     start_app(root)
