@@ -103,7 +103,7 @@ def center_result_label(result_label: tkinter.Label, text: str):
 
     # make sure to multiply the len by 11 or any int you find good.
 
-    text_len = len(text) * 11
+    text_len = len(text) * 10
 
     x_coord = (WIN_WIDTH - text_len) // 2
 
@@ -133,6 +133,9 @@ def convert_temperature(text: str):
 
     if text.count('k') > 1 or text.count('c') > 1:
         return "There more than one unit."
+
+    if text[-1] not in ('k', 'c'):
+        return "Wrong unit position or wrong unit."
 
     if text.count('-') > 1:
         return "There more than one negative sign."
