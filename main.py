@@ -15,6 +15,7 @@
 import tkinter
 from os import system
 from os import name as OS_NAME
+from random import choice
 
 # TODO: add help pop-up window that explain how to use the program.
 
@@ -80,8 +81,25 @@ def main_window():
         activebackground="royalblue", activeforeground="gray90", font=(WIN_FONT, 12),
         command=lambda: convert_btn_event(temperature_entry, result_var, result_label), cursor="hand1", name="convert_btn")
     convert_btn.place(x=324, y=39)
+    # adding enter and leave event to convert button.
+    convert_btn.bind("<Enter>", lambda event: change_active_color(convert_btn))
+    convert_btn.bind("<Leave>", lambda event: change_active_color(convert_btn))
 
     start_app(root)
+
+
+def change_active_color(button: tkinter.Button):
+    """change the active color of the convert button,
+    randomly when we hover on it."""
+
+    COLORS = ("royalblue",
+              "indianred",
+              "maroon",
+              "gold",
+              "darkorange",
+              "black")
+
+    button.configure(activebackground=choice(COLORS))
 
 
 def convert_btn_event(temperature_entry: tkinter.Entry, result_var: tkinter.StringVar, result_label: tkinter.Label):
