@@ -127,6 +127,9 @@ def convert_temperature(text: str):
         # if we given an empty string.
         return "Enter something Please."
 
+    if text.count('.') > 1:
+        return "non-valid syntax."
+
     if text.isdecimal():
         # if the user don't give us a unit.
         return "Please give a Unit 'C' or 'K'."
@@ -143,7 +146,7 @@ def convert_temperature(text: str):
     if text.find('-') not in (-1, 0):
         return "wrong negative sign."
 
-    if not all(char.isdecimal() or char in ('c', 'k', '-') for char in text):
+    if not all(char.isdecimal() or char in ('c', 'k', '-', '.') for char in text):
         return "non-valid syntax."
 
     # now convert the temperature.
@@ -152,14 +155,14 @@ def convert_temperature(text: str):
         "convert from Celsius to Kelvin"
         # + 273.15.
 
-        temperature_in_kelvin = round(int(text.strip('c')) + 273.15, 4)
+        temperature_in_kelvin = round(float(text.strip('c')) + 273.15, 4)
         return f"{temperature_in_kelvin}K"
 
     else:
         "convert from Kelvin to Celsius"
         # - 273.15.
 
-        temperature_in_celsius = round(int(text.strip('k')) - 273.15, 4)
+        temperature_in_celsius = round(float(text.strip('k')) - 273.15, 4)
         return f"{temperature_in_celsius}C"
 
 
