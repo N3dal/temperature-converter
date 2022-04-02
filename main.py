@@ -77,7 +77,8 @@ def main_window():
 
     convert_btn = tkinter.Button(
         root, text="Convert", bd=0, highlightbackground="black", bg="gray80",  highlightthickness=0,
-        activebackground="royalblue", activeforeground="gray90", font=(WIN_FONT, 12), command=lambda: convert_btn_event(temperature_entry, result_var, result_label))
+        activebackground="royalblue", activeforeground="gray90", font=(WIN_FONT, 12),
+        command=lambda: convert_btn_event(temperature_entry, result_var, result_label), cursor="hand1")
     convert_btn.place(x=324, y=39)
 
     start_app(root)
