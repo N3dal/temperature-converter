@@ -153,7 +153,7 @@ def convert_temperature(text: str):
         # if the user don't give us a unit.
         return "Please give a Unit 'C' or 'K'."
 
-    if text.count('k') > 1 or text.count('c') > 1:
+    if (text.count('k') + text.count('c')) > 1:
         return "There more than one unit."
 
     if text[-1] not in ('k', 'c'):
